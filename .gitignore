@@ -1,0 +1,11 @@
+# files
+*.csv
+*.log
+
+# data
+raw/*
+processed/*
+refined/*
+
+# cache
+__pycache__/
