@@ -1,6 +1,7 @@
 # files
 *.csv
 *.log
+*.ipynb
 
 # data
 raw/*
