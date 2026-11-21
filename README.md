@@ -10,11 +10,11 @@ JurisPrev is an early-warning machine learning project that predicts whether a l
 * [1. Introduction](#1-introduction)
 * [2. Literature Review](#2-literature-review)
 * [3. Methodology](#3-methodology)
-    * [3.1. Exploratory Data Analysis (EDA)](##31-exploratory-data-analysis-(eda))
-    * [3.2. Hypothesis Testing](##32-hypothesis-testing)
-    * [3.3. Data Biases](##33-data-biases)
-    * [3.4. Data Processing & Pipeline Methodology](##34-data-processing-&-pipeline-methodology)
-    * [3.5. Evaluation & Fairness Framework](##35-evaluation-&-fairness-framework)
+    * [3.1. Exploratory Data Analysis (EDA)](#31-exploratory-data-analysis-eda)
+    * [3.2. Hypothesis Testing](#32-hypothesis-testing)
+    * [3.3. Data Biases](#33-data-biases)
+    * [3.4. Data Processing & Pipeline Methodology](#34-data-processing--pipeline-methodology)
+    * [3.5. Evaluation & Fairness Framework](#35-evaluation--fairness-framework)
 
 ----------
 
@@ -78,6 +78,8 @@ To simulate a realistic prediction at the end of Year 1, were dropped 28 columns
 * **Class Imbalance.** About **90%** of students passed (`0`) and **10%** failed (`1`). Because of this imbalance, raw accuracy is misleading, so we use stratified splits, class weighting, `ROC-AUC`, and `PR-AUC`.
 * **Encoding Fixes & Outliers.** In the raw CSV, `age` had negative numbers representing offsets from 1900 for the 1991 cohort (e.g., `-65` = born in 1965 = age 26), and `fulltime` was coded as `{1, 2}`. We converted `age` (`91 + age`), mapped `fulltime` to `{1, 0}`, and clipped impossible values (`age` to `[17, 85]`, `ugpa` to `[0.0, 4.0]`), while keeping low `lsat`/`zfygpa` scores since they carry real failure risk signals.
 * **Missing Values & Collinearity.** Minor missingness appears in `zfygpa`, `fam_inc`, `age`, `race1`, and `gender`. Composite indices (`index6040`) and class deciles (`decile1`) were removed early to avoid multicollinearity with `lsat`, `ugpa`, and `zfygpa`. *(Exact summary statistics and plots from `pre_train.csv` are generated in the EDA notebook.)*
+
+## 3.2. Hypothesis Testing
 
 We test two core assumptions on `data/processed/pre_train.csv` using significance level **$\alpha = 0.05$**:
 
